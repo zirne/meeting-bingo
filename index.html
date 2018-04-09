@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+
+		<title>Avgå Alla! - Mötesbingo</title>
+		<script src="jquery.min.js"></script>
+		<!--
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css">
+		-->
+		<!-- Local -->
+		<script src="jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="jquery-ui.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body></body>
+
+	<script type="text/javascript">
+		function InitApp(){
+			var that = this;
+
+			pointList = [];
+			pointList.push('Ordningsfråga i ordningsfråga');
+			pointList.push('Ordningsfråga om beslutsordningen');
+			pointList.push('Mötesordförande citerar mötesordningen fel');
+			pointList.push('Mikrofonerna strular');
+			pointList.push('Streck i debatten-debatt > 15 min');
+			pointList.push('Okynnesvotering');
+			pointList.push('Rummet är en kvav öken');
+			pointList.push('Någon drar över talartiden och vägrar sluta prata');
+			pointList.push('Årsmötet vill ändra i budgetens personalposter');
+			pointList.push('Personval i rösträknar/justerarval');
+			pointList.push('Folk utan yttranderätt yttrar sig');
+			pointList.push('Röstlängden är felaktig');
+			pointList.push('Proposition saknas');
+			pointList.push('Ingen revisor är på plats');
+			pointList.push('Årsmötet vill bryta mot stadgarna');
+			pointList.push('"På min tid"');
+			pointList.push('Någon däremot? "Nej"');
+			pointList.push('"Finns handlingarna utskrivna någonstans?"');
+			pointList.push('Det saknas kandidater, vakantställning');
+			pointList.push('Det saknas kandidater, golvnominering');
+			pointList.push('Styrelsen hävdar praxis');
+			pointList.push('Årsredovisningen ej färdig');
+			pointList.push('En motion ingen förstår');
+			pointList.push('Någon tar upp en stadgeändring som övrig fråga');
+			pointList.push('Mötesordförande läser upp fel att-sats');
+			pointList.push('Mötesordförande mumlar i rask takt');
+			pointList.push('Något kallas odemokratiskt');
+			pointList.push('Ingen vet vilken version av ett dokument som gäller');
+			pointList.push('För få eluttag');
+			pointList.push('Någon blir mansplainad');
+			pointList.push('Oläsbar powerpoint');
+			pointList.push('Tävling i vem som kan flest svåra ord');
+			pointList.push('Någon hotar med att avgå');
+			pointList.push('Teknikstrul följt av livlig diskussion om lösning');
+			pointList.push('Justerarna lämnar innan mötets slut');
+			pointList.push('Någon kallas rättshaverist');
+			pointList.push('Överkomplicerad energizer');
+			pointList.push('Stadgarna säger emot sig själva');
+			pointList.push('Rösträknarna kommer fram till olika slutsiffror');
+			pointList.push('Någon tar fram basrösten och slår näven i talarstolen');
+			pointList.push('Kaffet tar slut');
+			pointList.push('"Den svenska lagstiftningen för föreningar säger"');
+			pointList.push('Mötesordförande glömmer vilken punkt mötet är på');
+			pointList.push('Wifi strular');
+			pointList.push('Något annat än en ordförandeklubba agerar ordförandeklubba');
+			pointList.push('Någons telefon ringer under beslut');
+			pointList.push('Rösträknarna glömmer att meddela resultat av sluten omröstning');
+
+			//Set 2
+			pointList.push('Mötesordförande suckar högljutt åt någons förslag');
+			pointList.push('Någon har tappat bort sitt röstkort');
+			pointList.push('Röstlängden justeras två gånger inom en timme');
+			pointList.push('Maten är försenad/kan vi skjuta på maten så vi blir klara');
+			pointList.push('Folk utan yrkanderätt yrkar');
+			pointList.push('Folk utan rösträtt röstar');
+
+
+			//Array done
+
+			rngEngine = new RNGSUS();
+			drawEngine = new Drawer();
+			dialogue = new Dialogue();
+
+			drawEngine.loadUI();
+
+
+			squareInt = 5;
+			randomized = rngEngine.give(pointList, squareInt);
+
+
+			if(randomized !== null && squareInt !== null){
+				drawEngine.createBoard(randomized, squareInt);
+			}
+
+			var cookieString = decodeURIComponent(document.cookie);
+			cookieString = cookieString.split(";");
+			cookies = {};
+			for(var i in cookieString){
+				var p = cookieString[i].split("=");
+				if(p.length === 2){
+					var cookieObj = new Object();
+					cookieObj.name = p[0];
+					cookieObj.value = p[1];
+					cookies[p[0]] = p[1];
+				}
+			}
+			//console.log(cookies);
+
+
+
+			if(cookies.readDisclaimer !== "true"){
+				//dialogue.disclaimer();
+			}
+			if(cookies.readCookies !== "true"){
+				//dialogue.cookies();
+			}
+
+		}
+		function Dialogue(){
+			var that = this;
+
+			function drawDiag(title,content){
+				var diag = $('<div>').attr("id","dialogue").attr("title",title).html(content);
+				$('body').append(diag);
+					
+				$(function() {
+		            $( "#dialogue" ).dialog({
+		               autoOpen: false, 
+		               modal: true,
+		               width: 500,
+		               buttons: {
+		                  OK: function(){
+		                  	$(this).dialog("close");
+		                  	$("#dialogue").remove();
+		                  }
+		               },
+		            });
+		         });
+				$( "#dialogue" ).dialog( "open" );
+
+			};
+			this.boards = function(){
+				var title = "Brickor";
+				var content = $('<div>').css("width","100%").css({height:"350px", overflow:"auto"});
+
+				content.append($('<p>').text("Just nu så finns " + pointList.length + " stycken olika saker som kan hamna på bingobrickan\nFler saker kan tillkomma framöver, samt funktionen att välja vilka som är möjliga att få med i sin bricka."));
+
+				for(var i in pointList){
+					content.append($('<p>').text(pointList[i]));
+				}
+
+					drawDiag(title, content);
+					//document.cookie = "readDisclaimer=true"; 
+			};
+
+			this.disclaimer = function(){
+				var title = "Disclaimer";
+				var content = $('<div>').css("width","100%");
+
+				content.append($('<p>').text("Det här är HUMOR.\n\nListan kan med fördel användas av folk som varit på för många årsmöten och är lite trötta på saker som inte fungerar.\n\nEtt sätt att avreagera sig utan att alla andra får lida för det helt enkelt.\n\nAnvändningsområden som ej rekommenderas är att bocka av så mycket som möjligt och sedan använda den för att kritisera mötet. Det är inte bara drygt, det är också förbannat opedagogiskt."));
+					drawDiag(title, content);
+					document.cookie = "readDisclaimer=true"; 
+			};
+
+			this.about = function(){
+				var title = "Om";
+				var content = $('<div>').css("width","100%");
+
+				content.append($('<span>').html('Den här sidan är baserad på en bingobricka framställd av <a href="https://twitter.com/garpebring/status/982699960830431236">Mimmi Garpebring</a> i samband med en gruppchatt mellan Mimmi, Saga Hedberg och Erik Einarsson.<br /><br />När Mimmi inte hittade någon bra bingogenerator på nätet så fick <a href="https://twitter.com/einarssonerik">Erik</a> den briljanta idén att bygga ihop det själv, glatt påhejad av Mimmi och Saga.<br /><br />Det är resultatet av detta som ni nu bevittnar här.<br /><br />Feature requests skickas till <a href="mailto:erik@avgåalla.nu">erik@avgåalla.nu</a>, nya saker att lägga in på brickorna genom att besvara <a href="https://twitter.com/garpebring/status/982699960830431236">denna Tweet</a>, buggrapporter hanteras på <a href="https://twitter.com/einarssonerik">Twitter</a>, klagomål på koncept/layout/annat skickas till <a href="mailto:dev/null@avgåalla.nu">dev/null@avgåalla.nu</a> där det kommer hanteras enligt <a href="https://en.wikipedia.org/wiki/Null_device">etablerad praxis</a>.'))
+				drawDiag(title, content);
+			};
+
+			this.cookies = function(){
+				var title = "Kakor";
+				var content = $('<div>').css("width","100%");
+
+				content.append($('<p>').text("Den här sidan använder kakor för att spara information.\nOm du inte gillar det så kan du ta bort dom själv i din webbläsare och låta bli att besöka den igen."))
+				
+				drawDiag(title, content);
+			};
+
+			this.license = function(){
+				var title = "Kakor";
+				var content = $('<div>').css("width","100%");
+
+				content.append($('<p>').text('Copyright 2018 Erik Einarsson\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'))
+				
+				content.append($('<span>').html('Läs mer om MIT-Licensen på Internet.<br /><br />Sidan använder externa biblioteken jQuery, jQueryUI.<br />Projektet ligger på GitHub så fort jag pallar.'))
+
+				drawDiag(title, content);
+			};
+		}
+		function RNGSUS(){
+			var that = this;
+
+			this.give = function(inputArray = null, amount){ //array = list of things to pick from, amount = number of things to return
+				if(inputArray !== null && amount !== null && inputArray.length >= amount*amount){
+					inputArray = shuffle(inputArray);
+					//console.log(inputArray);
+					var totalCount = amount * amount;
+					var outArray = [];
+					for (var i = 0; i < totalCount;i++){
+						outArray.push(inputArray[i])
+					}
+					//console.log(outArray);
+					return outArray;
+				}
+				return null;
+			};
+			function amountChecker(amount = null){ //TODO check that amount is reasonable
+				if(Number.isInteger(amount)){
+
+				}
+
+			}
+			function shuffle(array) {
+				var currentIndex = array.length, temporaryValue, randomIndex;
+
+				  // While there remain elements to shuffle...
+				  while (0 !== currentIndex) {
+
+				    // Pick a remaining element...
+				    randomIndex = Math.floor(Math.random() * currentIndex);
+				    currentIndex -= 1;
+
+				    // And swap it with the current element.
+				    temporaryValue = array[currentIndex];
+				    array[currentIndex] = array[randomIndex];
+				    array[randomIndex] = temporaryValue;
+				  }
+
+				  return array;
+				}
+		}
+		function Drawer(){
+			var that = this;
+
+			this.changeStatus = function(data = null){ // Doing it in pure JS because it is easier
+				if(data !== null){
+					var data = $(data);
+					if(data.hasClass("unmarked") || data.hasClass("marked")){
+						//console.log("GOTCHA")
+						if(data.hasClass("unmarked")){
+							data.removeClass("unmarked");
+							data.addClass("marked");
+
+						} else if(data.hasClass("marked")) {
+							data.removeClass("marked")
+							data.addClass("unmarked")
+						}
+					}
+					//console.log(data);
+
+				
+				}
+
+			};
+
+			this.header = function(){
+				var div = $('<div>').attr("id","header").css("width","100%").css("margin","0px").css("margin-bottom","20px").css("padding","0px").css("text-align","center").css("left","0").css("top","0").css("background-color","#6699ff").css("padding","20px").css("box-sizing","border-box");
+				//make header
+				div.append($('<h1>').text("Mötesbingo - när du känner att alla måste avgå"))
+
+
+
+
+				//done
+				return div;
+			};
+
+			this.content = function(){
+				var div = $('<div>').attr("id","content").css("width","100%").css("margin","0px").css("text-align","center");
+				//make content
+
+
+
+
+				//done
+				return div;
+			};
+
+			this.footer = function(){
+				var div = $('<div>').attr("id","footer");
+				//var div = $('<div>').attr("id","footer").css("width","100%").css("margin","0px").css("text-align","center").css("position","fixed").css("left","0").css("bottom","0").css("background-color","#6699ff").css("padding","20px");
+				//make footer
+
+				//var links = $('<p>')
+				div.append($('<a>').attr("href","#").text("Om").css("margin","10px").attr("onclick","dialogue.about()"));
+				div.append($('<a>').attr("href","#").text("Disclaimer").css("margin","10px").attr("onclick","dialogue.disclaimer()"));
+				div.append($('<a>').attr("href","#").text("Licens").css("margin","10px").attr("onclick","dialogue.license()"));
+				div.append($('<a>').attr("href","#").text("Kakor").css("margin","10px").attr("onclick","dialogue.cookies()"));
+				div.append($('<a>').attr("href","#").text("Möjliga brickor").css("margin","10px").attr("onclick","dialogue.boards()"));
+
+
+				//div.append(links);
+				//done
+				return div;
+			};
+
+			this.loadUI = function(){
+				//console.log("Loaded UI")
+				$('body').empty();
+				var main = $('<div>').attr("id","main").css("width","100%").css("margin","0px").css("text-align","center").css("height","100%").css("max-width","100%").css("box-sizing","border-box");
+				var header = this.header();
+				var content = this.content();
+				var footer = this.footer();
+
+				main.append(header).append(content).append(footer);
+				//console.log(main)
+				$('body').append(main);
+			};
+
+			this.createBoard = function(input, columns){
+				//$('body').empty();
+				$('#content').empty();
+				var table = $('<table>').css("margin", "0 auto");
+				var counter = 0;
+				for(var i = 0;i < columns;i++){
+					var row = $('<tr>');
+					for(var b = 0;b < columns;b++){
+						var cell = $('<td>').css("width","12vmin").css("height","12vmin").css("min-width","12vmin").css("max-width","12vmin").css("min-height","12vmin").css("max-height","12vmin").css("border-style", "solid").click(function(){drawEngine.changeStatus(this);}).addClass("unmarked");//12vmin in org
+						cell.append($('<p>').text(input[counter]).css("white-space","normal").css("font-size","1vmin").css("text-align","center"))//12px in org
+						counter++;
+						row.append(cell);
+					}
+					table.append(row);
+				}
+				$('#content').append(table);
+
+
+
+
+				//Append Button
+				$('#content').append($('<button>').css("margin","20px").css("padding","30px").css("background-color","#6699ff").css("border-radius","15px").css("color","white").css("font-weight","bold").click(function(){drawEngine.createBoard(rngEngine.give(pointList, squareInt), squareInt);}).text("Slumpa fram ny bricka"))
+			}
+		}
+	$(document).ready(function() {
+		InitApp();
+	});
+	</script>
+
+</html>
