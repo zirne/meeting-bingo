@@ -313,22 +313,24 @@
 
 			this.celebrate = function(){
 				console.log("TIME TO CELEBRATE!")
-				$('body').append($('<canvas>').attr("id","rain").css({
-					position:"fixed",
-					top:"0",
-					left:"0",
-					width:"100%",
-					height:"100%",
-					"z-index":"-1"
-				}))
-
-				try { //If the required library exists, we can run this
-					var confettiSettings = {"target":"rain","max":"80","size":"3","animate":true,"props":["square","line"],"colors":[[165,104,246],[230,61,135],[0,199,228],[253,214,126]],"clock":"25"};
-					var confetti = new ConfettiGenerator(confettiSettings);
-					confetti.render();
-				}
-				catch(err) {
-					console.log(err.message);
+				if($('#rain').length === 0){
+					$('body').append($('<canvas>').attr("id","rain").css({
+						position:"fixed",
+						top:"0",
+						left:"0",
+						width:"100%",
+						height:"100%",
+						"z-index":"-1"
+					}))
+					console.log("CONFETTI!");
+					try { //If the required library exists, we can run this
+						var confettiSettings = {"target":"rain","max":"80","size":"3","animate":true,"props":["square","line"],"colors":[[165,104,246],[230,61,135],[0,199,228],[253,214,126]],"clock":"25"};
+						var confetti = new ConfettiGenerator(confettiSettings);
+						confetti.render();
+					}
+					catch(err) {
+						console.log(err.message);
+					}
 				}
 			};
 
