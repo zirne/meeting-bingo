@@ -20,68 +20,63 @@
 		function InitApp(){
 			var that = this;
 
-			pointList = [];
-			pointList.push('Ordningsfråga i ordningsfråga');
-			pointList.push('Ordningsfråga om beslutsordningen');
-			pointList.push('Mötesordförande citerar mötesordningen fel');
-			pointList.push('Mikrofonerna strular');
-			pointList.push('Streck i debatten-debatt > 15 min');
-			pointList.push('Okynnesvotering');
-			pointList.push('Rummet är en kvav öken');
-			pointList.push('Någon drar över talartiden och vägrar sluta prata');
-			pointList.push('Årsmötet vill ändra i budgetens personalposter');
-			pointList.push('Personval i rösträknar/justerarval');
-			pointList.push('Folk utan yttranderätt yttrar sig');
-			pointList.push('Röstlängden är felaktig');
-			pointList.push('Proposition saknas');
-			pointList.push('Ingen revisor är på plats');
-			pointList.push('Årsmötet vill bryta mot stadgarna');
-			pointList.push('"På min tid"');
-			pointList.push('Någon däremot? "Nej"');
-			pointList.push('"Finns handlingarna utskrivna någonstans?"');
-			pointList.push('Det saknas kandidater, vakantställning');
-			pointList.push('Det saknas kandidater, golvnominering');
-			pointList.push('Styrelsen hävdar praxis');
-			pointList.push('Årsredovisningen ej färdig');
-			pointList.push('En motion ingen förstår');
-			pointList.push('Någon tar upp en stadgeändring som övrig fråga');
-			pointList.push('Mötesordförande läser upp fel att-sats');
-			pointList.push('Mötesordförande mumlar i rask takt');
-			pointList.push('Något kallas odemokratiskt');
-			pointList.push('Ingen vet vilken version av ett dokument som gäller');
-			pointList.push('För få eluttag');
-			pointList.push('Någon blir mansplainad');
-			pointList.push('Oläsbar powerpoint');
-			pointList.push('Tävling i vem som kan flest svåra ord');
-			pointList.push('Någon hotar med att avgå');
-			pointList.push('Teknikstrul följt av livlig diskussion om lösning');
-			pointList.push('Justerarna lämnar innan mötets slut');
-			pointList.push('Någon kallas rättshaverist');
-			pointList.push('Överkomplicerad energizer');
-			pointList.push('Stadgarna säger emot sig själva');
-			pointList.push('Rösträknarna kommer fram till olika slutsiffror');
-			pointList.push('Någon tar fram basrösten och slår näven i talarstolen');
-			pointList.push('Kaffet tar slut');
-			pointList.push('"Den svenska lagstiftningen för föreningar säger"');
-			pointList.push('Mötesordförande glömmer vilken punkt mötet är på');
-			pointList.push('Wifi strular');
-			pointList.push('Något annat än en ordförandeklubba agerar ordförandeklubba');
-			pointList.push('Någons telefon ringer under beslut');
-			pointList.push('Rösträknarna glömmer att meddela resultat av sluten omröstning');
+			pointList = [
+				'Ordningsfråga i ordningsfråga',
+				'Ordningsfråga om beslutsordningen',
+				'Mötesordförande citerar mötesordningen fel',
+				'Mikrofonerna strular',
+				'Streck i debatten-debatt > 15 min',
+				'Okynnesvotering',
+				'Rummet är en kvav öken',
+				'Någon drar över talartiden och vägrar sluta prata',
+				'Årsmötet vill ändra i budgetens personalposter',
+				'Personval i rösträknar/justerarval',
+				'Folk utan yttranderätt yttrar sig',
+				'Röstlängden är felaktig',
+				'Proposition saknas',
+				'Ingen revisor är på plats',
+				'Årsmötet vill bryta mot stadgarna',
+				'"På min tid"',
+				'Någon däremot? "Nej"',
+				'"Finns handlingarna utskrivna någonstans?"',
+				'Det saknas kandidater, vakantställning',
+				'Det saknas kandidater, golvnominering',
+				'Styrelsen hävdar praxis',
+				'Årsredovisningen ej färdig',
+				'En motion ingen förstår',
+				'Någon tar upp en stadgeändring som övrig fråga',
+				'Mötesordförande läser upp fel att-sats',
+				'Mötesordförande mumlar i rask takt',
+				'Något kallas odemokratiskt',
+				'Ingen vet vilken version av ett dokument som gäller',
+				'För få eluttag',
+				'Någon blir mansplainad',
+				'Oläsbar powerpoint',
+				'Tävling i vem som kan flest svåra ord',
+				'Någon hotar med att avgå',
+				'Teknikstrul följt av livlig diskussion om lösning',
+				'Justerarna lämnar innan mötets slut',
+				'Någon kallas rättshaverist',
+				'Överkomplicerad energizer',
+				'Stadgarna säger emot sig själva',
+				'Rösträknarna kommer fram till olika slutsiffror',
+				'Någon tar fram basrösten och slår näven i talarstolen',
+				'Kaffet tar slut',
+				'"Den svenska lagstiftningen för föreningar säger"',
+				'Mötesordförande glömmer vilken punkt mötet är på',
+				'Wifi strular',
+				'Något annat än en ordförandeklubba agerar ordförandeklubba',
+				'Någons telefon ringer under beslut',
+				'Rösträknarna glömmer att meddela resultat av sluten omröstning',
 
-			//Set 2
-			pointList.push('Mötesordförande suckar högljutt åt någons förslag');
-			pointList.push('Någon har tappat bort sitt röstkort');
-			pointList.push('Röstlängden justeras två gånger inom en timme');
-			pointList.push('Maten är försenad/kan vi skjuta på maten så vi blir klara');
-			pointList.push('Folk utan yrkanderätt yrkar');
-			pointList.push('Folk utan rösträtt röstar');
-			
-			//Update 3
-			pointList.push('Talarlisteskämt ingen skrattar åt');
-			pointList.push('Det tar lite för lång tid för årsmötet att komma ihåg vilka valberedarna är');
-			pointList.push('Mötesordförande börjar argumentera för en ståndpunkt i sakfråga');
-
+				//Set 2
+				'Mötesordförande suckar högljutt åt någons förslag',
+				'Någon har tappat bort sitt röstkort',
+				'Röstlängden justeras två gånger inom en timme',
+				'Maten är försenad/kan vi skjuta på maten så vi blir klara',
+				'Folk utan yrkanderätt yrkar',
+				'Folk utan rösträtt röstar',
+			];
 
 			//Array done
 
