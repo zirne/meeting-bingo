@@ -144,7 +144,7 @@
 			};
 			this.boards = function(){
 				var title = "Brickor";
-				var content = $('<div>').css("width","100%").css({height:"350px", overflow:"auto"});
+				var content = $('<div>').css({width:"100%",height:"350px", overflow:"auto"});
 
 				content.append($('<p>').text("Just nu så finns " + pointList.length + " stycken olika saker som kan hamna på bingobrickan\nFler saker kan tillkomma framöver, samt funktionen att välja vilka som är möjliga att få med i sin bricka."));
 
@@ -260,7 +260,18 @@
 			};
 
 			this.header = function(){
-				var div = $('<div>').attr("id","header").css("width","100%").css("margin","0px").css("margin-bottom","20px").css("padding","0px").css("text-align","center").css("left","0").css("top","0").css("background-color","#6699ff").css("padding","20px").css("box-sizing","border-box");
+				var div = $('<div>').attr("id","header").css({
+					width:"100%",
+					margin:"0px",
+					"margin-bottom":"20px",
+					padding:"0px",
+					"text-align":"center",
+					left:"0",
+					top:"0",
+					"background-color":"#6699ff",
+					padding:"20px",
+					"box-sizing":"border-box"
+				});
 				//make header
 				div.append($('<h1>').text("Mötesbingo - när du känner att alla måste avgå"))
 
@@ -272,7 +283,11 @@
 			};
 
 			this.content = function(){
-				var div = $('<div>').attr("id","content").css("width","100%").css("margin","0px").css("text-align","center");
+				var div = $('<div>').attr("id","content").css({
+					"width":"100%",
+					"margin":"0px",
+					"text-align":"center"
+				});
 				//make content
 
 
@@ -303,7 +318,14 @@
 			this.loadUI = function(){
 				//console.log("Loaded UI")
 				$('body').empty();
-				var main = $('<div>').attr("id","main").css("width","100%").css("margin","0px").css("text-align","center").css("height","100%").css("max-width","100%").css("box-sizing","border-box");
+				var main = $('<div>').attr("id","main").css({
+					"width":"100%",
+					"margin":"0px",
+					"text-align":"center",
+					"height":"100%",
+					"max-width":"100%",
+					"box-sizing":"border-box"
+				});
 				var header = this.header();
 				var content = this.content();
 				var footer = this.footer();
@@ -321,8 +343,20 @@
 				for(var i = 0;i < columns;i++){
 					var row = $('<tr>');
 					for(var b = 0;b < columns;b++){
-						var cell = $('<td>').css("width","12vmin").css("height","12vmin").css("min-width","12vmin").css("max-width","12vmin").css("min-height","12vmin").css("max-height","12vmin").css("border-style", "solid").click(function(){drawEngine.changeStatus(this);}).addClass("unmarked");//12vmin in org
-						cell.append($('<p>').text(input[counter]).css("white-space","normal").css("font-size","1vmin").css("text-align","center"))//12px in org
+						var cell = $('<td>').css({
+							"width":"12vmin",
+							"height":"12vmin",
+							"min-width":"12vmin",
+							"max-width":"12vmin",
+							"min-height":"12vmin",
+							"max-height":"12vmin",
+							"border-style": "solid"
+						}).click(function(){drawEngine.changeStatus(this);}).addClass("unmarked");//12vmin in org
+						cell.append($('<p>').text(input[counter]).css({
+							"white-space":"normal",
+							"font-size":"1vmin",
+							"text-align":"center"
+						}))//12px in org
 						counter++;
 						row.append(cell);
 					}
@@ -334,7 +368,14 @@
 
 
 				//Append Button
-				$('#content').append($('<button>').css("margin","20px").css("padding","30px").css("background-color","#6699ff").css("border-radius","15px").css("color","white").css("font-weight","bold").click(function(){drawEngine.createBoard(rngEngine.give(pointList, squareInt), squareInt);}).text("Slumpa fram ny bricka"))
+				$('#content').append($('<button>').css({
+					"margin":"20px",
+					"padding":"30px",
+					"background-color":"#6699ff",
+					"border-radius":"15px",
+					"color":"white",
+					"font-weight":"bold"
+				}).click(function(){drawEngine.createBoard(rngEngine.give(pointList, squareInt), squareInt);}).text("Slumpa fram ny bricka"))
 			}
 		}
 	$(document).ready(function() {
