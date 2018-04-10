@@ -11,6 +11,7 @@
 		-->
 		<!-- Local -->
 		<script src="jquery-ui.min.js"></script>
+		<!--<script src="confetti.js"></script>--><!-- Uncomment this to use external library -->
 		<link rel="stylesheet" type="text/css" href="jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
@@ -76,21 +77,22 @@
 				'Maten är försenad/kan vi skjuta på maten så vi blir klara',
 				'Folk utan yrkanderätt yrkar',
 				'Folk utan rösträtt röstar',
-				
+
 				//Set 3
 				'Talarlisteskämt ingen skrattar åt',
 				'Det tar lite för lång tid för årsmötet att komma ihåg vilka valberedarna är',
 				'Mötesordförande börjar argumentera för en ståndpunkt i sakfråga',
 			];
-			
-			
-			
-			
+
+
+
+
 			//Array done
 
 			rngEngine = new RNGSUS();
 			drawEngine = new Drawer();
 			dialogue = new Dialogue();
+			winner = new CheckWinConditions();
 
 			drawEngine.loadUI();
 
@@ -127,16 +129,79 @@
 			}
 
 		}
+		function CheckWinConditions(){
+			var that = this;
+			this.check = function(){
+				var board = $('.bingoBoard');
+				if (board.length === 1){
+					board = board[0];
+					var rows = tableRowsToBools(board.children[0].children);
+					var cols = rowsToCols(rows);
+					if (bCheckData(rows) || bCheckData(cols)){
+						console.log("BINGO");
+						drawEngine.celebrate();
+					}
+				}
+			}
+			function bCheckData(input = null){
+				if(input !== null){
+					for(var i in input){
+						var counter = 0;
+						var row = input[i]
+						for(var b in row){
+							if(row[b] === 1){
+								counter++;
+							}
+						}
+						if(counter === row.length){
+							return true;
+						}
+					}
+				}
+				return false;
+			}
+			function tableRowsToBools(input = null){
+				if(input !== null){				//I'm lazy, ok?
+				var output = [];
+					for(var i=0;i < input.length;i++){
+						var colArr = [];
+						for(var b=0; b < input[i].children.length;b++){
+							if(input[i].children[b].className === "marked"){
+								colArr.push(1);
+							}else{
+								colArr.push(0);
+							}
+						}
+						output.push(colArr);
+					}
+					return output;
+				}
+			}
+			function rowsToCols(input = null){ //input = row
+				if(input !== null){
+					var output = [];
+					for(var i in input){
+						var colData = [];
+						var row = input[i];
+						for(var b in input){
+							colData.push(input[b][i])
+						}
+						output.push(colData)
+					}
+					return output;
+				}
+			}
+		}
 		function Dialogue(){
 			var that = this;
 
 			function drawDiag(title,content){
 				var diag = $('<div>').attr("id","dialogue").attr("title",title).html(content);
 				$('body').append(diag);
-					
+
 				$(function() {
 		            $( "#dialogue" ).dialog({
-		               autoOpen: false, 
+		               autoOpen: false,
 		               modal: true,
 		               width: 500,
 		               buttons: {
@@ -161,7 +226,7 @@
 				}
 
 					drawDiag(title, content);
-					//document.cookie = "readDisclaimer=true"; 
+					//document.cookie = "readDisclaimer=true";
 			};
 
 			this.disclaimer = function(){
@@ -170,7 +235,7 @@
 
 				content.append($('<p>').text("Det här är HUMOR.\n\nListan kan med fördel användas av folk som varit på för många årsmöten och är lite trötta på saker som inte fungerar.\n\nEtt sätt att avreagera sig utan att alla andra får lida för det helt enkelt.\n\nAnvändningsområden som ej rekommenderas är att bocka av så mycket som möjligt och sedan använda den för att kritisera mötet. Det är inte bara drygt, det är också förbannat opedagogiskt."));
 					drawDiag(title, content);
-					document.cookie = "readDisclaimer=true"; 
+					document.cookie = "readDisclaimer=true";
 			};
 
 			this.about = function(){
@@ -181,12 +246,20 @@
 				drawDiag(title, content);
 			};
 
+			this.winMsg = function(){
+				var title = "Grattis... eller nåt?";
+				var content = $('<div>').css("width","100%");
+
+				content.append($('<span>').html(''))
+				drawDiag(title, content);
+			};
+
 			this.cookies = function(){
 				var title = "Kakor";
 				var content = $('<div>').css("width","100%");
 
 				content.append($('<p>').text("Den här sidan använder kakor för att spara information.\nOm du inte gillar det så kan du ta bort dom själv i din webbläsare och låta bli att besöka den igen."))
-				
+
 				drawDiag(title, content);
 			};
 
@@ -195,7 +268,7 @@
 				var content = $('<div>').css("width","100%");
 
 				content.append($('<p>').text('Copyright 2018 Erik Einarsson\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'))
-				
+
 				content.append($('<span>').html('Läs mer om MIT-Licensen på Internet.<br /><br />Sidan använder externa biblioteken jQuery, jQueryUI.<br />Källkoden finns på <a href="https://github.com/zirne/meeting-bingo">GitHub</a>.'))
 
 				drawDiag(title, content);
@@ -246,6 +319,30 @@
 		function Drawer(){
 			var that = this;
 
+			this.celebrate = function(){
+				console.log("TIME TO CELEBRATE!")
+				$('body').append($('<canvas>').attr("id","rain").css({
+					position:"fixed",
+					top:"0",
+					left:"0",
+					width:"100%",
+					height:"100%"
+				}))
+
+				try { //If the required library exists, we can run this
+					var confettiSettings = {"target":"rain","max":"80","size":"3","animate":true,"props":["square","line"],"colors":[[165,104,246],[230,61,135],[0,199,228],[253,214,126]],"clock":"25"};
+					var confetti = new ConfettiGenerator(confettiSettings);
+					confetti.render();
+				}
+				catch(err) {
+					console.log(err.message);
+				}
+
+
+
+
+			};
+
 			this.changeStatus = function(data = null){ // Doing it in pure JS because it is easier
 				if(data !== null){
 					var data = $(data);
@@ -259,10 +356,11 @@
 							data.removeClass("marked")
 							data.addClass("unmarked")
 						}
+						winner.check();
 					}
 					//console.log(data);
 
-				
+
 				}
 
 			};
@@ -346,7 +444,7 @@
 			this.createBoard = function(input, columns){
 				//$('body').empty();
 				$('#content').empty();
-				var table = $('<table>').css("margin", "0 auto");
+				var table = $('<table>').css("margin", "0 auto").addClass("bingoBoard");
 				var counter = 0;
 				for(var i = 0;i < columns;i++){
 					var row = $('<tr>');
