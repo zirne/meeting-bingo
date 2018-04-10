@@ -20,69 +20,72 @@
 		function InitApp(){
 			var that = this;
 
-			pointList = [];
-			pointList.push('Ordningsfråga i ordningsfråga');
-			pointList.push('Ordningsfråga om beslutsordningen');
-			pointList.push('Mötesordförande citerar mötesordningen fel');
-			pointList.push('Mikrofonerna strular');
-			pointList.push('Streck i debatten-debatt > 15 min');
-			pointList.push('Okynnesvotering');
-			pointList.push('Rummet är en kvav öken');
-			pointList.push('Någon drar över talartiden och vägrar sluta prata');
-			pointList.push('Årsmötet vill ändra i budgetens personalposter');
-			pointList.push('Personval i rösträknar/justerarval');
-			pointList.push('Folk utan yttranderätt yttrar sig');
-			pointList.push('Röstlängden är felaktig');
-			pointList.push('Proposition saknas');
-			pointList.push('Ingen revisor är på plats');
-			pointList.push('Årsmötet vill bryta mot stadgarna');
-			pointList.push('"På min tid"');
-			pointList.push('Någon däremot? "Nej"');
-			pointList.push('"Finns handlingarna utskrivna någonstans?"');
-			pointList.push('Det saknas kandidater, vakantställning');
-			pointList.push('Det saknas kandidater, golvnominering');
-			pointList.push('Styrelsen hävdar praxis');
-			pointList.push('Årsredovisningen ej färdig');
-			pointList.push('En motion ingen förstår');
-			pointList.push('Någon tar upp en stadgeändring som övrig fråga');
-			pointList.push('Mötesordförande läser upp fel att-sats');
-			pointList.push('Mötesordförande mumlar i rask takt');
-			pointList.push('Något kallas odemokratiskt');
-			pointList.push('Ingen vet vilken version av ett dokument som gäller');
-			pointList.push('För få eluttag');
-			pointList.push('Någon blir mansplainad');
-			pointList.push('Oläsbar powerpoint');
-			pointList.push('Tävling i vem som kan flest svåra ord');
-			pointList.push('Någon hotar med att avgå');
-			pointList.push('Teknikstrul följt av livlig diskussion om lösning');
-			pointList.push('Justerarna lämnar innan mötets slut');
-			pointList.push('Någon kallas rättshaverist');
-			pointList.push('Överkomplicerad energizer');
-			pointList.push('Stadgarna säger emot sig själva');
-			pointList.push('Rösträknarna kommer fram till olika slutsiffror');
-			pointList.push('Någon tar fram basrösten och slår näven i talarstolen');
-			pointList.push('Kaffet tar slut');
-			pointList.push('"Den svenska lagstiftningen för föreningar säger"');
-			pointList.push('Mötesordförande glömmer vilken punkt mötet är på');
-			pointList.push('Wifi strular');
-			pointList.push('Något annat än en ordförandeklubba agerar ordförandeklubba');
-			pointList.push('Någons telefon ringer under beslut');
-			pointList.push('Rösträknarna glömmer att meddela resultat av sluten omröstning');
+			pointList = [
+				'Ordningsfråga i ordningsfråga',
+				'Ordningsfråga om beslutsordningen',
+				'Mötesordförande citerar mötesordningen fel',
+				'Mikrofonerna strular',
+				'Streck i debatten-debatt > 15 min',
+				'Okynnesvotering',
+				'Rummet är en kvav öken',
+				'Någon drar över talartiden och vägrar sluta prata',
+				'Årsmötet vill ändra i budgetens personalposter',
+				'Personval i rösträknar/justerarval',
+				'Folk utan yttranderätt yttrar sig',
+				'Röstlängden är felaktig',
+				'Proposition saknas',
+				'Ingen revisor är på plats',
+				'Årsmötet vill bryta mot stadgarna',
+				'"På min tid"',
+				'Någon däremot? "Nej"',
+				'"Finns handlingarna utskrivna någonstans?"',
+				'Det saknas kandidater, vakantställning',
+				'Det saknas kandidater, golvnominering',
+				'Styrelsen hävdar praxis',
+				'Årsredovisningen ej färdig',
+				'En motion ingen förstår',
+				'Någon tar upp en stadgeändring som övrig fråga',
+				'Mötesordförande läser upp fel att-sats',
+				'Mötesordförande mumlar i rask takt',
+				'Något kallas odemokratiskt',
+				'Ingen vet vilken version av ett dokument som gäller',
+				'För få eluttag',
+				'Någon blir mansplainad',
+				'Oläsbar powerpoint',
+				'Tävling i vem som kan flest svåra ord',
+				'Någon hotar med att avgå',
+				'Teknikstrul följt av livlig diskussion om lösning',
+				'Justerarna lämnar innan mötets slut',
+				'Någon kallas rättshaverist',
+				'Överkomplicerad energizer',
+				'Stadgarna säger emot sig själva',
+				'Rösträknarna kommer fram till olika slutsiffror',
+				'Någon tar fram basrösten och slår näven i talarstolen',
+				'Kaffet tar slut',
+				'"Den svenska lagstiftningen för föreningar säger"',
+				'Mötesordförande glömmer vilken punkt mötet är på',
+				'Wifi strular',
+				'Något annat än en ordförandeklubba agerar ordförandeklubba',
+				'Någons telefon ringer under beslut',
+				'Rösträknarna glömmer att meddela resultat av sluten omröstning',
 
-			//Set 2
-			pointList.push('Mötesordförande suckar högljutt åt någons förslag');
-			pointList.push('Någon har tappat bort sitt röstkort');
-			pointList.push('Röstlängden justeras två gånger inom en timme');
-			pointList.push('Maten är försenad/kan vi skjuta på maten så vi blir klara');
-			pointList.push('Folk utan yrkanderätt yrkar');
-			pointList.push('Folk utan rösträtt röstar');
+				//Set 2
+				'Mötesordförande suckar högljutt åt någons förslag',
+				'Någon har tappat bort sitt röstkort',
+				'Röstlängden justeras två gånger inom en timme',
+				'Maten är försenad/kan vi skjuta på maten så vi blir klara',
+				'Folk utan yrkanderätt yrkar',
+				'Folk utan rösträtt röstar',
+				
+				//Set 3
+				'Talarlisteskämt ingen skrattar åt',
+				'Det tar lite för lång tid för årsmötet att komma ihåg vilka valberedarna är',
+				'Mötesordförande börjar argumentera för en ståndpunkt i sakfråga',
+			];
 			
-			//Update 3
-			pointList.push('Talarlisteskämt ingen skrattar åt');
-			pointList.push('Det tar lite för lång tid för årsmötet att komma ihåg vilka valberedarna är');
-			pointList.push('Mötesordförande börjar argumentera för en ståndpunkt i sakfråga');
-
-
+			
+			
+			
 			//Array done
 
 			rngEngine = new RNGSUS();
@@ -149,7 +152,7 @@
 			};
 			this.boards = function(){
 				var title = "Brickor";
-				var content = $('<div>').css("width","100%").css({height:"350px", overflow:"auto"});
+				var content = $('<div>').css({width:"100%",height:"350px", overflow:"auto"});
 
 				content.append($('<p>').text("Just nu så finns " + pointList.length + " stycken olika saker som kan hamna på bingobrickan\nFler saker kan tillkomma framöver, samt funktionen att välja vilka som är möjliga att få med i sin bricka."));
 
@@ -265,7 +268,18 @@
 			};
 
 			this.header = function(){
-				var div = $('<div>').attr("id","header").css("width","100%").css("margin","0px").css("margin-bottom","20px").css("padding","0px").css("text-align","center").css("left","0").css("top","0").css("background-color","#6699ff").css("padding","20px").css("box-sizing","border-box");
+				var div = $('<div>').attr("id","header").css({
+					width:"100%",
+					margin:"0px",
+					"margin-bottom":"20px",
+					padding:"0px",
+					"text-align":"center",
+					left:"0",
+					top:"0",
+					"background-color":"#6699ff",
+					padding:"20px",
+					"box-sizing":"border-box"
+				});
 				//make header
 				div.append($('<h1>').text("Mötesbingo - när du känner att alla måste avgå"))
 
@@ -277,7 +291,11 @@
 			};
 
 			this.content = function(){
-				var div = $('<div>').attr("id","content").css("width","100%").css("margin","0px").css("text-align","center");
+				var div = $('<div>').attr("id","content").css({
+					"width":"100%",
+					"margin":"0px",
+					"text-align":"center"
+				});
 				//make content
 
 
@@ -308,7 +326,14 @@
 			this.loadUI = function(){
 				//console.log("Loaded UI")
 				$('body').empty();
-				var main = $('<div>').attr("id","main").css("width","100%").css("margin","0px").css("text-align","center").css("height","100%").css("max-width","100%").css("box-sizing","border-box");
+				var main = $('<div>').attr("id","main").css({
+					"width":"100%",
+					"margin":"0px",
+					"text-align":"center",
+					"height":"100%",
+					"max-width":"100%",
+					"box-sizing":"border-box"
+				});
 				var header = this.header();
 				var content = this.content();
 				var footer = this.footer();
@@ -326,8 +351,20 @@
 				for(var i = 0;i < columns;i++){
 					var row = $('<tr>');
 					for(var b = 0;b < columns;b++){
-						var cell = $('<td>').css("width","12vmin").css("height","12vmin").css("min-width","12vmin").css("max-width","12vmin").css("min-height","12vmin").css("max-height","12vmin").css("border-style", "solid").click(function(){drawEngine.changeStatus(this);}).addClass("unmarked");//12vmin in org
-						cell.append($('<p>').text(input[counter]).css("white-space","normal").css("font-size","1vmin").css("text-align","center"))//12px in org
+						var cell = $('<td>').css({
+							"width":"12vmin",
+							"height":"12vmin",
+							"min-width":"12vmin",
+							"max-width":"12vmin",
+							"min-height":"12vmin",
+							"max-height":"12vmin",
+							"border-style": "solid"
+						}).click(function(){drawEngine.changeStatus(this);}).addClass("unmarked");//12vmin in org
+						cell.append($('<p>').text(input[counter]).css({
+							"white-space":"normal",
+							"font-size":"1vmin",
+							"text-align":"center"
+						}))//12px in org
 						counter++;
 						row.append(cell);
 					}
@@ -339,7 +376,14 @@
 
 
 				//Append Button
-				$('#content').append($('<button>').css("margin","20px").css("padding","30px").css("background-color","#6699ff").css("border-radius","15px").css("color","white").css("font-weight","bold").click(function(){drawEngine.createBoard(rngEngine.give(pointList, squareInt), squareInt);}).text("Slumpa fram ny bricka"))
+				$('#content').append($('<button>').css({
+					"margin":"20px",
+					"padding":"30px",
+					"background-color":"#6699ff",
+					"border-radius":"15px",
+					"color":"white",
+					"font-weight":"bold"
+				}).click(function(){drawEngine.createBoard(rngEngine.give(pointList, squareInt), squareInt);}).text("Slumpa fram ny bricka"))
 			}
 		}
 	$(document).ready(function() {
