@@ -11,7 +11,7 @@
 		-->
 		<!-- Local -->
 		<script src="jquery-ui.min.js"></script>
-		<!--<script src="confetti.js"></script>--><!-- Uncomment this to use external library -->
+		<script src="confetti.js"></script><!-- Uncomment this to use external library -->
 		<link rel="stylesheet" type="text/css" href="jquery-ui.css">
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
@@ -84,11 +84,6 @@
 				'Mötesordförande börjar argumentera för en ståndpunkt i sakfråga',
 			];
 
-
-
-
-			//Array done
-
 			rngEngine = new RNGSUS();
 			drawEngine = new Drawer();
 			dialogue = new Dialogue();
@@ -96,10 +91,8 @@
 
 			drawEngine.loadUI();
 
-
 			squareInt = 5;
 			randomized = rngEngine.give(pointList, squareInt);
-
 
 			if(randomized !== null && squareInt !== null){
 				drawEngine.createBoard(randomized, squareInt);
@@ -119,16 +112,14 @@
 			}
 			//console.log(cookies);
 
-
-
 			if(cookies.readDisclaimer !== "true"){
 				//dialogue.disclaimer();
 			}
 			if(cookies.readCookies !== "true"){
 				//dialogue.cookies();
 			}
-
 		}
+
 		function CheckWinConditions(){
 			var that = this;
 			this.check = function(){
@@ -192,6 +183,7 @@
 				}
 			}
 		}
+
 		function Dialogue(){
 			var that = this;
 
@@ -200,21 +192,21 @@
 				$('body').append(diag);
 
 				$(function() {
-		            $( "#dialogue" ).dialog({
-		               autoOpen: false,
-		               modal: true,
-		               width: 500,
-		               buttons: {
-		                  OK: function(){
-		                  	$(this).dialog("close");
-		                  	$("#dialogue").remove();
-		                  }
-		               },
-		            });
-		         });
+					$( "#dialogue" ).dialog({
+						autoOpen: false,
+						modal: true,
+						width: 500,
+						buttons: {
+							OK: function(){
+								$(this).dialog("close");
+								$("#dialogue").remove();
+							}
+						},
+					});
+				});
 				$( "#dialogue" ).dialog( "open" );
-
 			};
+
 			this.boards = function(){
 				var title = "Brickor";
 				var content = $('<div>').css({width:"100%",height:"350px", overflow:"auto"});
@@ -234,8 +226,8 @@
 				var content = $('<div>').css("width","100%");
 
 				content.append($('<p>').text("Det här är HUMOR.\n\nListan kan med fördel användas av folk som varit på för många årsmöten och är lite trötta på saker som inte fungerar.\n\nEtt sätt att avreagera sig utan att alla andra får lida för det helt enkelt.\n\nAnvändningsområden som ej rekommenderas är att bocka av så mycket som möjligt och sedan använda den för att kritisera mötet. Det är inte bara drygt, det är också förbannat opedagogiskt."));
-					drawDiag(title, content);
-					document.cookie = "readDisclaimer=true";
+				drawDiag(title, content);
+				document.cookie = "readDisclaimer=true";
 			};
 
 			this.about = function(){
@@ -264,16 +256,17 @@
 			};
 
 			this.license = function(){
-				var title = "Kakor";
+				var title = "Licens";
 				var content = $('<div>').css("width","100%");
 
 				content.append($('<p>').text('Copyright 2018 Erik Einarsson\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.'))
 
-				content.append($('<span>').html('Läs mer om MIT-Licensen på Internet.<br /><br />Sidan använder externa biblioteken jQuery, jQueryUI.<br />Källkoden finns på <a href="https://github.com/zirne/meeting-bingo">GitHub</a>.'))
+				content.append($('<span>').html('Läs mer om MIT-Licensen på Internet.<br /><br />Sidan använder externa biblioteken jQuery, jQueryUI samt <a href="https://www.npmjs.com/package/confetti-js">confetti-js</a>.<br />Källkoden finns på <a href="https://github.com/zirne/meeting-bingo">GitHub</a>.'))
 
 				drawDiag(title, content);
 			};
 		}
+
 		function RNGSUS(){
 			var that = this;
 
@@ -295,52 +288,50 @@
 				if(Number.isInteger(amount)){
 
 				}
-
 			}
 			function shuffle(array) {
 				var currentIndex = array.length, temporaryValue, randomIndex;
 
-				  // While there remain elements to shuffle...
-				  while (0 !== currentIndex) {
+				// While there remain elements to shuffle...
+				while (0 !== currentIndex) {
+					// Pick a remaining element...
+					randomIndex = Math.floor(Math.random() * currentIndex);
+					currentIndex -= 1;
 
-				    // Pick a remaining element...
-				    randomIndex = Math.floor(Math.random() * currentIndex);
-				    currentIndex -= 1;
-
-				    // And swap it with the current element.
-				    temporaryValue = array[currentIndex];
-				    array[currentIndex] = array[randomIndex];
-				    array[randomIndex] = temporaryValue;
-				  }
-
-				  return array;
+					// And swap it with the current element.
+					temporaryValue = array[currentIndex];
+					array[currentIndex] = array[randomIndex];
+					array[randomIndex] = temporaryValue;
 				}
+
+				return array;
+			}
 		}
+
 		function Drawer(){
 			var that = this;
 
 			this.celebrate = function(){
 				console.log("TIME TO CELEBRATE!")
-				$('body').append($('<canvas>').attr("id","rain").css({
-					position:"fixed",
-					top:"0",
-					left:"0",
-					width:"100%",
-					height:"100%"
-				}))
-
-				try { //If the required library exists, we can run this
-					var confettiSettings = {"target":"rain","max":"80","size":"3","animate":true,"props":["square","line"],"colors":[[165,104,246],[230,61,135],[0,199,228],[253,214,126]],"clock":"25"};
-					var confetti = new ConfettiGenerator(confettiSettings);
-					confetti.render();
+				if($('#rain').length === 0){
+					$('body').append($('<canvas>').attr("id","rain").css({
+						position:"fixed",
+						top:"0",
+						left:"0",
+						width:"100%",
+						height:"100%",
+						"z-index":"-1"
+					}))
+					console.log("CONFETTI!");
+					try { //If the required library exists, we can run this
+						var confettiSettings = {"target":"rain","max":"80","size":"3","animate":true,"props":["square","line"],"colors":[[165,104,246],[230,61,135],[0,199,228],[253,214,126]],"clock":"25"};
+						var confetti = new ConfettiGenerator(confettiSettings);
+						confetti.render();
+					}
+					catch(err) {
+						console.log(err.message);
+					}
 				}
-				catch(err) {
-					console.log(err.message);
-				}
-
-
-
-
 			};
 
 			this.changeStatus = function(data = null){ // Doing it in pure JS because it is easier
@@ -359,10 +350,7 @@
 						winner.check();
 					}
 					//console.log(data);
-
-
 				}
-
 			};
 
 			this.header = function(){
@@ -380,10 +368,6 @@
 				});
 				//make header
 				div.append($('<h1>').text("Mötesbingo - när du känner att alla måste avgå"))
-
-
-
-
 				//done
 				return div;
 			};
@@ -395,9 +379,6 @@
 					"text-align":"center"
 				});
 				//make content
-
-
-
 
 				//done
 				return div;
@@ -414,7 +395,6 @@
 				div.append($('<a>').attr("href","#").text("Licens").css("margin","10px").attr("onclick","dialogue.license()"));
 				div.append($('<a>').attr("href","#").text("Kakor").css("margin","10px").attr("onclick","dialogue.cookies()"));
 				div.append($('<a>').attr("href","#").text("Möjliga brickor").css("margin","10px").attr("onclick","dialogue.boards()"));
-
 
 				//div.append(links);
 				//done
@@ -458,10 +438,11 @@
 							"max-height":"13vmin",
 							"border-style": "solid"
 						}).click(function(){drawEngine.changeStatus(this);}).addClass("unmarked");//12vmin in org
-						cell.append($('<p>').text(input[counter]).css({
-							"white-space":"normal",
-							"font-size":"1vmin",
-							"text-align":"center"
+						cell.append($('<p>').addClass("pointText").text(input[counter]).css({
+							"white-space":"pre-line",
+							"font-size":"1.3vmin",
+							"text-align":"center",
+							"margin":"3px"
 						}))//12px in org
 						counter++;
 						row.append(cell);
@@ -469,9 +450,6 @@
 					table.append(row);
 				}
 				$('#content').append(table);
-
-
-
 
 				//Append Button
 				$('#content').append($('<button>').css({
@@ -484,9 +462,8 @@
 				}).click(function(){drawEngine.createBoard(rngEngine.give(pointList, squareInt), squareInt);}).text("Slumpa fram ny bricka"))
 			}
 		}
-	$(document).ready(function() {
-		InitApp();
-	});
-	</script>
 
+		$(InitApp);
+
+	</script>
 </html>
