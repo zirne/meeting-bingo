@@ -15,6 +15,8 @@ confetti-js (https://www.npmjs.com/package/confetti-js)
 # TODO
 On the TODO-list is the following things(in no particular order):
 
+Move functions to separate .js files and do some refactoring.
+
 Including relevant jQuery UI resources to reduce 404 requests to server.
 
 Selecting elements from the pre-defined list to exclude from bingo board creation.
