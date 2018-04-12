@@ -15,9 +15,11 @@ confetti-js (https://www.npmjs.com/package/confetti-js)
 # TODO
 On the TODO-list is the following things(in no particular order):
 
+Including relevant jQuery UI resources to reduce 404 requests to server.
+
 Selecting elements from the pre-defined list to exclude from bingo board creation.
 
-Validator to automatically check if the user has Bingo or not, complete with confetti rain and a message filled with sympathy for the user.
+Validator to automatically check if the user has Bingo or not(Down and across in first feature rollout), complete with confetti rain and a message filled with sympathy for the user.
 
 # Bugs
 Report bugs and other issues here on github.
