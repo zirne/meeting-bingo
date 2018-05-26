@@ -94,8 +94,8 @@
 
 			if (seed === null || rngEngine.validateSeed(seed) === false){
 				seed = rngEngine.newSeed();
-				console.log(seed);
-				console.log(rngEngine.validateSeed(seed));
+			//console.log(seed);
+				//console.log(rngEngine.validateSeed(seed));
 			}
 			seedNumber =  parseInt(seed, 16);
 			drawEngine.loadUI();
@@ -515,8 +515,10 @@
 
 		function setUriParam(str){
 			//if(findGetParameter("id") === null){
-				document.location.search = "?id=" + encodeURIComponent(str);
+				//document.location.search = "?id=" + encodeURIComponent(str);
 			//}
+			//Better Method
+			window.history.pushState('','',"?id=" + encodeURIComponent(str))
 		}
 
 
