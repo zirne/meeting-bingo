@@ -21,6 +21,7 @@
 		function InitApp(){
 			var that = this;
 
+
 			pointList = [
 				'Ordningsfråga i ordningsfråga',
 				'Ordningsfråga om beslutsordningen',
@@ -89,6 +90,14 @@
 			dialogue = new Dialogue();
 			winner = new CheckWinConditions();
 
+			seed = findGetParameter("id");
+
+			if (seed === null || rngEngine.validateSeed(seed) === false){
+				seed = rngEngine.newSeed();
+			//console.log(seed);
+				//console.log(rngEngine.validateSeed(seed));
+			}
+			seedNumber =  parseInt(seed, 16);
 			drawEngine.loadUI();
 
 			squareInt = 5;
@@ -270,6 +279,22 @@
 		function RNGSUS(){
 			var that = this;
 
+			this.newSeed = function(){
+				var str = Math.random().toString(16).split(".")[1];
+				setUriParam(str);
+				return str;
+				//console.log(str);
+			}
+			this.validateSeed = function(testSeed = null){
+				if(testSeed !== null){
+					var re = new RegExp(/^[\da-f]*$/);
+					//console.log("babar");
+					return re.test(testSeed);
+				} else {
+					return false;
+				}
+			}
+
 			this.give = function(inputArray = null, amount){ //array = list of things to pick from, amount = number of things to return
 				if(inputArray !== null && amount !== null && inputArray.length >= amount*amount){
 					inputArray = shuffle(inputArray);
@@ -290,12 +315,24 @@
 				}
 			}
 			function shuffle(array) {
+				if(seed === null || rngEngine.validateSeed(seed) !== true){//IF FOR SOME REASON THIS HAPPENS, WTF?
+					seed = rngEngine.newSeed();
+				}
 				var currentIndex = array.length, temporaryValue, randomIndex;
+				//console.log(currentIndex);
+				//console.log(seedNumber);
+
+				//Seed Handler for Pseudo-randomness
+				let pseudoRandom = function() {
+      		var x = Math.sin(seedNumber++) * 10000;
+      		return x - Math.floor(x);
+				};
+
 
 				// While there remain elements to shuffle...
 				while (0 !== currentIndex) {
 					// Pick a remaining element...
-					randomIndex = Math.floor(Math.random() * currentIndex);
+					randomIndex = Math.floor(pseudoRandom() * currentIndex);
 					currentIndex -= 1;
 
 					// And swap it with the current element.
@@ -419,6 +456,30 @@
 				$('#content').append($('<button>').addClass("generateBoard").click(function(){drawEngine.createBoard(rngEngine.give(pointList, squareInt), squareInt);}).text("Slumpa fram ny bricka"))
 			}
 		}
+
+		function findGetParameter(parameterName) {//Shamelessly borrowed from Eric Nguyen
+    var result = null,
+        tmp = [];
+    location.search
+        .substr(1)
+        .split("&")
+        .forEach(function (item) {
+          tmp = item.split("=");
+          if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+        });
+    return result;
+		}
+
+		function setUriParam(str){
+			//if(findGetParameter("id") === null){
+				//document.location.search = "?id=" + encodeURIComponent(str);
+			//}
+			//Better Method
+			window.history.pushState('','',"?id=" + encodeURIComponent(str))
+		}
+
+
+
 
 		$(InitApp);
 
