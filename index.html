@@ -31,7 +31,7 @@
 				'Rummet är en kvav öken',
 				'Någon drar över talartiden och vägrar sluta prata',
 				'Årsmötet vill ändra i budgetens personalposter',
-				'Personval i rösträknar/justerarval',
+				'Personval i rösträknar och/eller justerarval',
 				'Folk utan yttranderätt yttrar sig',
 				'Röstlängden är felaktig',
 				'Proposition saknas',
@@ -354,18 +354,7 @@
 			};
 
 			this.header = function(){
-				var div = $('<div>').attr("id","header").css({
-					width:"100%",
-					margin:"0px",
-					"margin-bottom":"20px",
-					padding:"0px",
-					"text-align":"center",
-					left:"0",
-					top:"0",
-					"background-color":"#6699ff",
-					padding:"20px",
-					"box-sizing":"border-box"
-				});
+				var div = $('<div>').attr("id","header");
 				//make header
 				div.append($('<h1>').text("Mötesbingo - när du känner att alla måste avgå"))
 				//done
@@ -373,11 +362,7 @@
 			};
 
 			this.content = function(){
-				var div = $('<div>').attr("id","content").css({
-					"width":"100%",
-					"margin":"0px",
-					"text-align":"center"
-				});
+				var div = $('<div>').attr("id","content");
 				//make content
 
 				//done
@@ -386,15 +371,14 @@
 
 			this.footer = function(){
 				var div = $('<div>').attr("id","footer");
-				//var div = $('<div>').attr("id","footer").css("width","100%").css("margin","0px").css("text-align","center").css("position","fixed").css("left","0").css("bottom","0").css("background-color","#6699ff").css("padding","20px");
 				//make footer
 
 				//var links = $('<p>')
-				div.append($('<a>').attr("href","#").text("Om").css("margin","10px").attr("onclick","dialogue.about()"));
-				div.append($('<a>').attr("href","#").text("Disclaimer").css("margin","10px").attr("onclick","dialogue.disclaimer()"));
-				div.append($('<a>').attr("href","#").text("Licens").css("margin","10px").attr("onclick","dialogue.license()"));
-				div.append($('<a>').attr("href","#").text("Kakor").css("margin","10px").attr("onclick","dialogue.cookies()"));
-				div.append($('<a>').attr("href","#").text("Möjliga brickor").css("margin","10px").attr("onclick","dialogue.boards()"));
+				div.append($('<a>').addClass("footerLink").attr("href","#").text("Om").attr("onclick","dialogue.about()"));
+				div.append($('<a>').addClass("footerLink").attr("href","#").text("Disclaimer").attr("onclick","dialogue.disclaimer()"));
+				div.append($('<a>').addClass("footerLink").attr("href","#").text("Licens").attr("onclick","dialogue.license()"));
+				div.append($('<a>').addClass("footerLink").attr("href","#").text("Kakor").attr("onclick","dialogue.cookies()"));
+				div.append($('<a>').addClass("footerLink").attr("href","#").text("Möjliga brickor").attr("onclick","dialogue.boards()"));
 
 				//div.append(links);
 				//done
@@ -404,14 +388,7 @@
 			this.loadUI = function(){
 				//console.log("Loaded UI")
 				$('body').empty();
-				var main = $('<div>').attr("id","main").css({
-					"width":"100%",
-					"margin":"0px",
-					"text-align":"center",
-					"height":"100%",
-					"max-width":"100%",
-					"box-sizing":"border-box"
-				});
+				var main = $('<div>').attr("id","main");
 				var header = this.header();
 				var content = this.content();
 				var footer = this.footer();
@@ -424,26 +401,13 @@
 			this.createBoard = function(input, columns){
 				//$('body').empty();
 				$('#content').empty();
-				var table = $('<table>').css("margin", "0 auto").addClass("bingoBoard");
+				var table = $('<table>').addClass("bingoBoard");
 				var counter = 0;
 				for(var i = 0;i < columns;i++){
-					var row = $('<tr>');
+					var row = $('<tr>').addClass("boardRow");
 					for(var b = 0;b < columns;b++){
-						var cell = $('<td>').css({
-							"width":"12vmin",
-							"height":"12vmin",
-							"min-width":"12vmin",
-							"max-width":"12vmin",
-							"min-height":"12vmin",
-							"max-height":"12vmin",
-							"border-style": "solid"
-						}).click(function(){drawEngine.changeStatus(this);}).addClass("unmarked");//12vmin in org
-						cell.append($('<p>').addClass("pointText").text(input[counter]).css({
-							"white-space":"pre-line",
-							"font-size":"1.3vmin",
-							"text-align":"center",
-							"margin":"3px"
-						}))//12px in org
+						var cell = $('<td>').addClass("boardCell").click(function(){drawEngine.changeStatus(this);}).addClass("unmarked");//12vmin in org
+						cell.append($('<p>').addClass("pointText").text(input[counter]))//12px in org
 						counter++;
 						row.append(cell);
 					}
@@ -452,14 +416,7 @@
 				$('#content').append(table);
 
 				//Append Button
-				$('#content').append($('<button>').css({
-					"margin":"20px",
-					"padding":"30px",
-					"background-color":"#6699ff",
-					"border-radius":"15px",
-					"color":"white",
-					"font-weight":"bold"
-				}).click(function(){drawEngine.createBoard(rngEngine.give(pointList, squareInt), squareInt);}).text("Slumpa fram ny bricka"))
+				$('#content').append($('<button>').addClass("generateBoard").click(function(){drawEngine.createBoard(rngEngine.give(pointList, squareInt), squareInt);}).text("Slumpa fram ny bricka"))
 			}
 		}
 
