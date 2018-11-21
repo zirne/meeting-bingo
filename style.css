@@ -1,3 +1,15 @@
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+
 .marked {
 	background-color: green;
 	color:white;
@@ -5,6 +17,9 @@
 }
 .pointText {
 	font-size: 1.1vmin;
+	white-space: pre-line;
+	text-align: center;
+	margin: 3px;
 }
 .unmarked {
 	background-color: white;
@@ -15,6 +30,29 @@ p {
 }
 span {
 	white-space: pre-line;
+}
+#main{
+	width: 100%; margin: 0px; text-align: center; height: 100%; max-width: 100%; box-sizing: border-box;
+}
+#header{
+	width:100%;
+	margin:0px;
+	margin-bottom:20px;
+	text-align:center;
+	left:0;
+	top:0;
+	background-color:#6699ff;
+	padding:15px;
+	box-sizing:border-box;
+}
+#content{
+	width:100%;
+	margin:0px;
+	text-align:center;
+}
+h1{
+	font-size: 3vmin;
+	margin: 0px;
 }
 /*body {
 	margin: 0px;
@@ -39,14 +77,14 @@ body {
   /*padding-bottom: 6rem;*/
   height: 100%;
   min-height: 100%;
-  /*font-family: "Helvetica Neue", Arial, sans-serif;*/
+  /*font-family: Helvetica Neue, Arial, sans-serif;*/
 }
 #main {
   position: relative;
   margin: 0;
-  padding-bottom: 100px;
+  /*padding-bottom: 100px;
   /*min-height: 100%;*/
-  /*font-family: "Helvetica Neue", Arial, sans-serif;*/
+  /*font-family: Helvetica Neue, Arial, sans-serif;*/
 }
 #header{
 	color:white;
@@ -54,14 +92,16 @@ body {
 }
 #footer{
 	width:100%;
-	margin:0px;
-	height: 100px;
 	text-align:center;
 	background-color:#6699ff;
-	padding:20px;
-	bottom:-16px;
+	padding: 1rem;
+	bottom: 0;
 	position:absolute;
 	box-sizing:border-box;
+}
+.footerLink{
+	margin:10px;
+	font-size: 1.5vmin;
 }
 /*
 html {
@@ -77,4 +117,30 @@ html {
 #content{
 	/*padding: 10px;*/
 	padding-bottom: 100px;
+}
+.boardCell{
+	width:13vmin;
+	height:13vmin;
+	min-width:13vmin;
+	max-width:13vmin;
+	min-height:13vmin;
+	max-height:13vmin;
+	border-style: solid;
+	border-width: 0.3vmin;
+}
+.bingoBoard{
+	margin: 0 auto;
+}
+.generateBoard{
+	margin:20px;
+	padding:15px;
+	background-color:#6699ff;
+	border-radius:15px;
+	color:white;
+	font-weight:bold;
+}
+@media(min-resolution: 1.5dppx){
+	.pointText{
+		font-size: 2vmin;
+	}
 }
