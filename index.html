@@ -453,7 +453,7 @@
 				$('#content').append(table);
 
 				//Append Button
-				$('#content').append($('<button>').addClass("generateBoard").click(function(){drawEngine.createBoard(rngEngine.give(pointList, squareInt), squareInt);}).text("Slumpa fram ny bricka"))
+				$('#content').append($('<button>').addClass("generateBoard").click(function(){seed = rngEngine.newSeed(); drawEngine.createBoard(rngEngine.give(pointList, squareInt), squareInt);}).text("Slumpa fram ny bricka"))
 			}
 		}
 
