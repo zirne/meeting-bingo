@@ -142,7 +142,7 @@ function CheckWinConditions(){
       for(var i=0;i < input.length;i++){
         var colArr = [];
         for(var b=0; b < input[i].children.length;b++){
-          if(input[i].children[b].className === "marked"){
+          if(input[i].children[b].classList.contains("marked")){ // Fixed properly now
             colArr.push(1);
           }else{
             colArr.push(0);
@@ -426,8 +426,6 @@ return result;
 function setUriParam(str){
   window.history.pushState('','',"?id=" + encodeURIComponent(str))
 }
-
-
 
 
 $(InitApp);
