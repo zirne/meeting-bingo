@@ -8,15 +8,13 @@ html {
 *:after {
   box-sizing: inherit;
 }
-
-
 .marked {
 	background-color: green;
 	color:white;
 	border-color: black;
 }
 .pointText {
-	font-size: 1.2vmin;
+	font-size: 0.75em;
 	white-space: pre-line;
 	text-align: center;
 	margin: 3px;
@@ -54,9 +52,6 @@ h1{
 	font-size: 3vmin;
 	margin: 0px;
 }
-/*body {
-	margin: 0px;
-}*/
 #overlay {
     position: fixed;
     top: 0;
@@ -74,17 +69,12 @@ body {
   position: relative;
   margin: 0;
   padding: 0;
-  /*padding-bottom: 6rem;*/
   height: 100%;
   min-height: 100%;
-  /*font-family: Helvetica Neue, Arial, sans-serif;*/
 }
 #main {
   position: relative;
   margin: 0;
-  /*padding-bottom: 100px;
-  /*min-height: 100%;*/
-  /*font-family: Helvetica Neue, Arial, sans-serif;*/
 }
 #header{
 	color:white;
@@ -103,28 +93,13 @@ body {
 	margin:10px;
 	font-size: 1.5vmin;
 }
-/*
-html {
-  height: 100%;
-  box-sizing: border-box;
-}
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-*/
-#content{
-	/*padding: 10px;*/
-	padding-bottom: 100px;
-}
 .boardCell{
-	width:13vmin;
-	height:13vmin;
-	min-width:13vmin;
-	max-width:13vmin;
-	min-height:13vmin;
-	max-height:13vmin;
+	width:14vmin;
+	height:14vmin;
+	min-width:14vmin;
+	max-width:14vmin;
+	min-height:14vmin;
+	max-height:14vmin;
 	border-style: solid;
 	border-width: 0.3vmin;
 }
