@@ -1,8 +1,10 @@
 # meeting-bingo
-This is a bingo board app in Javascript and CSS. It's pretty simple and you could argue that every function being public is messy, but it's solid and it works
+This is a bingo board app in Javascript and CSS. It's pretty simple and you could argue that every function being public is messy, but it's solid and it works.
+
+Live demo can be found at [avgaalla.nu](https://avgaalla.nu)
 
 # Deployment
-Deploy by copying sourcefiles into webroot, and download dependencies accordingly. No backend required.
+Deploy by placing sourcefiles into directory served by a web server. No backend required and all external dependencies are fetched from CDN.
 
 # Deployment (Third party sites)
 
@@ -21,7 +23,7 @@ Those values are not necessary and defaults will be loaded/generated if not prov
 
 
 # Features
-Stores board data in local storage so it can be "accidental reloading"-proof.
+Stores board data in local storage so it can be "accidental reloading"-proof. Multiple boards can be stored at once.
 
 Completely rewritten to support integration in third-party sites if desired.
 
