@@ -353,7 +353,7 @@ function drawAbout() {
 
 function drawBoardInfo() {
     let title = "Brickor";
-    let content = $('<div>').css({ "height": window.visualViewport.height / 2, overflow: "auto" });
+    let content = $('<div>').css({ "height": window.innerHeight / 2, overflow: "auto" });
 
     content.append($('<p>').text("Just nu så finns " + pointList.length + " stycken olika saker som kan hamna på bingobrickan\nFler saker kan tillkomma framöver, samt funktionen att välja vilka som är möjliga att få med i sin bricka."));
     for (let i in pointList) {
