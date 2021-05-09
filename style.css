@@ -1,121 +1,47 @@
-html {
-  height: 100%;
-  box-sizing: border-box;
+.bingo-table {
+    border: 1px solid black;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+.bingo-row {
+    border: 1px solid black;
+    height: width / 5;
 }
-.marked {
-	background-color: green;
-	color:white;
-	border-color: black;
+
+.bingo-cell {
+    border: 1px solid black;
+    width: 20%;
 }
-.pointText {
-	font-size: 0.75em;
-	white-space: pre-line;
-	text-align: center;
-	margin: 3px;
+
+.bingo-cell-container {
+    display: flex;
+    padding: 1%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
-.unmarked {
-	background-color: white;
-	color: black;
+
+.bingo-text {
+    margin: 0px;
 }
-p {
-	white-space: pre-line;
+
+.bingo-cell-container:before {
+	content: "";
+	float: left;
+	padding-top: 100%; 	/* initial ratio of 1:1*/
 }
-span {
-	white-space: pre-line;
+
+.bingo-highlight {
+    background-color: green;
 }
-#main{
-	width: 100%; margin: 0px; text-align: center; height: 100%; max-width: 100%; box-sizing: border-box;
+
+.bingo-highlight p {
+    color: white;
 }
-#header{
-	width:100%;
-	margin:0px;
-	margin-bottom:20px;
-	text-align:center;
-	left:0;
-	top:0;
-	background-color:#6699ff;
-	padding:15px;
-	box-sizing:border-box;
+
+.bingo-popup-container {
+    width: "100%"
 }
-#content{
-	width:100%;
-	margin:0px;
-	text-align:center;
-}
-h1{
-	font-size: 3vmin;
-	margin: 0px;
-}
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    filter:alpha(opacity=50);
-    -moz-opacity:0.5;
-    -khtml-opacity: 0.5;
-    opacity: 0.5;
-    z-index: 10000;
-}
-body {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  min-height: 100%;
-}
-#main {
-  position: relative;
-  margin: 0;
-}
-#header{
-	color:white;
-	font-family: Arial;
-}
-#footer{
-	width:100%;
-	text-align:center;
-	background-color:#6699ff;
-	padding: 1rem;
-	bottom: 0;
-	position:absolute;
-	box-sizing:border-box;
-}
-.footerLink{
-	margin:10px;
-	font-size: 1.5vmin;
-}
-.boardCell{
-	width:14vmin;
-	height:14vmin;
-	min-width:14vmin;
-	max-width:14vmin;
-	min-height:14vmin;
-	max-height:14vmin;
-	border-style: solid;
-	border-width: 0.3vmin;
-}
-.bingoBoard{
-	margin: 0 auto;
-}
-.generateBoard{
-	margin:20px;
-	padding:15px;
-	background-color:#6699ff;
-	border-radius:15px;
-	color:white;
-	font-weight:bold;
-}
-@media(min-resolution: 1.5dppx){
-	.pointText{
-		font-size: 2vmin;
-	}
+
+.bingo-popup-container a {
+    text-decoration: underline;
 }
