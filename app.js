@@ -336,7 +336,7 @@ function drawDisclaimer() {
 };
 
 function drawAbout() {
-    let title = "Om";
+    let title = 'Om BingoApp ' + bingo_app_version;
     let content = $('<div>')
 
     let content_rows = [
@@ -423,6 +423,7 @@ function BingoApp(input_points=null, seed=null, element=null) {
     }
     SetupData(input_points || pointList)
     bingo_parent_element_id = element || '#bingo-container'
+    bingo_app_version = "2.0.0"
     drawBoard()
     $(document).ready(function () {
         if (window.localStorage.getItem('read_disclaimer') === null) {
@@ -430,7 +431,7 @@ function BingoApp(input_points=null, seed=null, element=null) {
         }
     })
     let current_year = new Date().getFullYear()
-    console.log('BingoApp loaded. Copyright 2018-' + current_year + ' Erik Einarsson');
+    console.log('BingoApp ' + bingo_app_version +' loaded. Copyright 2018-' + current_year + ' Erik Einarsson');
 }
 
 function generateNewBoard() {
