@@ -273,7 +273,7 @@ function drawBoard() {
     // Hopefully, this should allow for implementation on other sites as well.
     // We do not need to draw footer or header since that
     let board = getLocalBoard()
-    let rootElem = $('#bingo-container')
+    let rootElem = $(bingo_parent_element_id)
     rootElem.addClass('row') // Make sure that we have nice things with bootstrap
     table = $('<table>', { 'class': 'bingo-table' })
     let c = 0;
@@ -415,16 +415,22 @@ function drawLicenseMessage() {
 }
 
 
-function BingoApp(input_points = null) {
+function BingoApp(input_points=null, seed=null, element=null) {
     let that = this;
-    console.log('BingoApp loaded');
+    
+    if (seed !== null && validateSeed(seed)){
+        setGetParameter('board', seed)
+    }
     SetupData(input_points || pointList)
+    bingo_parent_element_id = element || '#bingo-container'
     drawBoard()
     $(document).ready(function () {
         if (window.localStorage.getItem('read_disclaimer') === null) {
             setTimeout(drawDisclaimer, 1000)
         }
     })
+    let current_year = new Date().getFullYear()
+    console.log('BingoApp loaded. Copyright 2018-' + current_year + ' Erik Einarsson');
 }
 
 function generateNewBoard() {
