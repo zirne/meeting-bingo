@@ -20,6 +20,45 @@
     align-items: center;
 }
 
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+    .bingo-cell p {
+        font-size:13px;
+    }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+    .bingo-cell p {
+        font-size:12px;
+    }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+    .bingo-cell p {
+        font-size:12px;
+    }
+}
+
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+    .bingo-cell p {
+        font-size:11px;
+    }
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 320px) {
+    .bingo-cell p {
+        font-size:10px;
+    }
+}
+
+
+
+
+
 .bingo-text {
     margin: 0px;
 }
