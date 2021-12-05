@@ -340,7 +340,7 @@ function drawAbout() {
     let content = $('<div>')
 
     let content_rows = [
-        $('<p>').append($('<span>').html('Den här sidan är baserad på en bingobricka framställd av <a href="https://twitter.com/garpebring/status/982699960830431236">Mimmi Garpebring</a> i samband med en gruppchatt mellan Mimmi, Saga Löved och Erik Einarsson.')),
+        $('<p>').append($('<span>').html('Den här sidan är baserad på en bingobricka framställd av <a href="https://twitter.com/garpebring/status/982699960830431236" target="_blank">Mimmi Garpebring</a> i samband med en gruppchatt mellan Mimmi, Saga Löved och Erik Einarsson.')),
         $('<p>').append($('<span>').html('När Mimmi inte hittade någon bra bingogenerator på nätet så fick <a href="https://twitter.com/einarssonerik">Erik</a> den briljanta idén att bygga ihop det själv, glatt påhejad av Mimmi och Saga.')),
         $('<p>').text('Det är resultatet av detta som ni nu bevittnar här.'),
         $('<p>').append($('<span>').html('Feature requests skickas till <a href="mailto:erik@avgåalla.nu">erik@avgåalla.nu</a>, nya saker att lägga in på brickorna genom att besvara <a href="https://twitter.com/garpebring/status/982699960830431236">denna Tweet</a>, buggrapporter hanteras på <a href="https://twitter.com/einarssonerik">Twitter</a>, klagomål på koncept/layout/annat skickas till <a href="mailto:dev/null@avgåalla.nu">dev/null@avgåalla.nu</a> där det kommer hanteras enligt <a href="https://en.wikipedia.org/wiki/Null_device">etablerad praxis</a>.'))
