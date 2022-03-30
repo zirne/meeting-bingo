@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Avgå Alla! - Mötesbingo</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css"
+        integrity="sha256-GoHAaz6rZ9vWIl8NqcaR1Sw+khKk1WzAeMdegW32UWA=" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&amp;family=Roboto:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" integrity="sha256-/XLSvq+SVeGyLjBlGmG3MKcoSEXRD+4FFIR57QFNj2k=" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Mötesbingo - när du känner att alla måste avgå</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" onclick="drawAbout()">Om</a></li>
+                    <li><a href="#" onclick="drawDisclaimer()">Disclaimer</a></li>
+                    <li><a href="#" onclick="drawLicenseMessage()">Licens</a></li>
+                    <li><a href="#" onclick="drawCookieMessage()">Kakor</a></li>
+                    <li><a href="#" onclick="drawBoardInfo()">Möjliga rutor</a></li>
+                    <li><a href="#" onclick="generateNewBoard()">Generera ny bricka</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container" id="main-bingo-content">
+        <div id="bingo-container" class="row">
+            <table class="bingo-table">
+                <tr class="bingo-row">
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Ingen vet vilken version av ett dokument som gäller</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">För få eluttag</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Mötesordförande glömmer vilken punkt mötet är på</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">"På min tid"</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Röstlängden justeras två gånger inom en timme</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="bingo-row">
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Ingen vet vilken version av ett dokument som gäller</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">För få eluttag</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Mötesordförande glömmer vilken punkt mötet är på</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">"På min tid"</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Röstlängden justeras två gånger inom en timme</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="bingo-row">
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Ingen vet vilken version av ett dokument som gäller</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">För få eluttag</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Mötesordförande glömmer vilken punkt mötet är på</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">"På min tid"</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Röstlängden justeras två gånger inom en timme</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="bingo-row">
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Ingen vet vilken version av ett dokument som gäller</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">För få eluttag</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Mötesordförande glömmer vilken punkt mötet är på</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">"På min tid"</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Röstlängden justeras två gånger inom en timme</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="bingo-row">
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Ingen vet vilken version av ett dokument som gäller</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">För få eluttag</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Mötesordförande glömmer vilken punkt mötet är på</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">"På min tid"</p>
+                        </div>
+                    </td>
+                    <td class="bingo-cell">
+                        <div class="bingo-cell-container">
+                            <p class="bingo-text">Röstlängden justeras två gånger inom en timme</p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/gh/Agezao/confetti-js/dist/index.min.js"
+    integrity="sha256-p6aQfSnK5puy5yn9xCIyBjJKv5FFMhVoHvJqT7ZGdZU=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="app.js"></script>
+<script>
+    $(document).ready(function () { app = BingoApp(); })
+</script>
+
+</html>
