@@ -423,7 +423,7 @@ function BingoApp(input_points=null, seed=null, element=null) {
     }
     SetupData(input_points || pointList)
     bingo_parent_element_id = element || '#bingo-container'
-    bingo_app_version = "2.0.0"
+    bingo_app_version = "2.0.1"
     drawBoard()
     $(document).ready(function () {
         if (window.localStorage.getItem('read_disclaimer') === null) {
