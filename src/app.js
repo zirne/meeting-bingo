@@ -297,12 +297,13 @@ function drawBoard() {
 
 function drawDiag(title, content) {
     content.addClass("bingo-popup-container")
-    let diag = $('<div>').attr("id", "dialogue").attr("title", title).html(content);
+
+    let diag = $('<div>').attr("id", "dialog").attr("title", title).html(content);
     $('#bingo-container').append(diag);
 
-    $(function () {
-        $("#dialogue").dialog({
-            autoOpen: false,
+    $( function () {
+        $("#dialog").dialog({
+            autoOpen: true, //Autoopen is OK since we're creating the element dynamically, and calling open manually can lead to element not initialized properly before call
             modal: true,
             width: "40%",
             buttons: {
@@ -313,7 +314,6 @@ function drawDiag(title, content) {
             },
         });
     });
-    $("#dialogue").dialog("open");
 }
 
 function drawDisclaimer() {
