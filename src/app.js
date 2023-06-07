@@ -297,12 +297,13 @@ function drawBoard() {
 
 function drawDiag(title, content) {
     content.addClass("bingo-popup-container")
-    let diag = $('<div>').attr("id", "dialogue").attr("title", title).html(content);
+
+    let diag = $('<div>').attr("id", "dialog").attr("title", title).html(content);
     $('#bingo-container').append(diag);
 
-    $(function () {
-        $("#dialogue").dialog({
-            autoOpen: false,
+    $( function () {
+        $("#dialog").dialog({
+            autoOpen: true, //Autoopen is OK since we're creating the element dynamically, and calling open manually can lead to element not initialized properly before call
             modal: true,
             width: "40%",
             buttons: {
@@ -313,7 +314,6 @@ function drawDiag(title, content) {
             },
         });
     });
-    $("#dialogue").dialog("open");
 }
 
 function drawDisclaimer() {
@@ -423,7 +423,7 @@ function BingoApp(input_points=null, seed=null, element=null) {
     }
     SetupData(input_points || pointList)
     bingo_parent_element_id = element || '#bingo-container'
-    bingo_app_version = "2.0.0"
+    bingo_app_version = "2.0.1"
     drawBoard()
     $(document).ready(function () {
         if (window.localStorage.getItem('read_disclaimer') === null) {

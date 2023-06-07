@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Checksum tool for remote files
+# Modified from example at https://www.srihash.org/
+
+echo "sha256-$(wget $1 -qO- | openssl dgst -sha256 -binary | openssl base64 -A)"
+
